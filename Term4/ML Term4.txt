@@ -1,0 +1,37 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+df=pd.read_csv("Salary_Data.csv")
+
+df.head()
+
+plt.scatter(df['YearsExperience'],df['Salary'])
+
+from sklearn.cluster import KMeans
+km=KMeans(n_clusters=4)
+
+KMeans(algorithm='auto',copy_x=True,init='k-means++',max_iter=300,n_clusters=4,n_init=10,tol=0.0001,verbose=0)
+
+y_pred=km.fit_predict(df[['YearsExperience','Salary']])
+
+y_pred
+
+df['Cluster']=y_pred
+
+df.head()
+
+km.cluster_centers_
+
+df1=df[df.Cluster==0]
+df2=df[df.Cluster==1]
+df3=df[df.Cluster==2]
+df4=df[df.Cluster==3]
+plt.scatter(df1.YearsExperience,df1['Salary'],color='green',label='salary')
+plt.scatter(df2.YearsExperience,df2['Salary'],color='red',label='salary')
+plt.scatter(df3.YearsExperience,df3['Salary'],color='black',label='salary')
+plt.scatter(df4.YearsExperience,df4['Salary'],color='green',label='salary')
+plt.scatter(km.cluster_centers_[:,0],km.cluster_centers_[:,1],color='purple',label='centroid')
+plt.xlabel('Years Experience')
+plt.ylabel('Salary')
+plt.legend()

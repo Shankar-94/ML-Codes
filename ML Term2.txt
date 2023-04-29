@@ -1,0 +1,56 @@
+import numpy as np
+import math
+def eucledian():
+    p1=np.array([0,2])
+    p2=np.array([2,0])
+    p3=(p1-p2)**2
+    eucledian=math.sqrt(np.sum(p3))
+    return eucledian
+eucledian()
+
+import numpy as np
+import math
+def eucledian():
+    p2=np.array([2,0])
+    p3=np.array([3,2])
+    p1=(p2-p3)**2
+    eucledian=math.sqrt(np.sum(p1))
+    return eucledian
+eucledian()
+
+import numpy as np
+import math
+def eucledian():
+    p1=np.array([0,2])
+    p3=np.array([3,2])
+    p2=(p1-p3)**2
+    eucledian=math.sqrt(np.sum(p2))
+    return eucledian
+eucledian()
+
+import numpy as np
+import math
+def jaccard():
+    x=(0,1,0,1)
+    y=(1,0,1,0)
+    matches=np.logical_and(x,y)
+    non_zeroes=np.logical_or(x,y)
+    j=matches.sum()/non_zeroes.sum()
+    return j
+jaccard()
+
+p = np.array([[0,2],[2,0],[3,2]])
+
+def ed(v1, v2):
+    return "{:.2f}".format(math.sqrt(np.sum((v1-v2)**2)))
+
+print("eucledian distance between p1 and p2 is",ed(p[0],p[1]))
+print("eucledian distance between p2 and p3 is",ed(p[1],p[2]))
+print("eucledian distance between p3 and p1 is",ed(p[2],p[0]))
+
+
+
+for i in range(len(p)):
+    for j in range(len(p)):
+        print(ed(p[i],p[j]),"\t",end=" ")
+    print("\n")
